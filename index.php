@@ -39,10 +39,10 @@ $page = file_exists($page) ? $page : 'pages'. DIRECTORY_SEPARATOR .'404.php';
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
     <link rel="icon" type="image/png" href="img/favicon.ico" />
     <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen" />
-    <link href="css/raspcontrol.css" rel="stylesheet" media="screen" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen" />
     <link href="css/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="css/raspcontrol.css" rel="stylesheet" media="screen" />
   </head>
 
   <body>

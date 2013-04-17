@@ -71,6 +71,9 @@ header img {
 .form-login {
   margin: 20px 0 60px 0;
 }
+.form-login input {
+  margin-bottom: 10px;
+}
 
 .details table {
   width: 100%;
