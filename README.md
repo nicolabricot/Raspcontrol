@@ -33,11 +33,11 @@ You have to create a json format file in `/etc/raspcontrol` named `database.aptm
 		"password":   "yourPassword"
 	}
 
-### Root privileges
+### Statictics access
 
-To get some statistics, we need to be as root. We'll use the command `sudo`, but we need first to edit the table with `visudo`. Add the following line ath the end of the file:
+To get some statistics, we need to have some rigth. Adding `www-data` to the `video` group is a safe way. You can do that by executing the following command :
 
-	www-data ALL=(ALL) NOPASSWD: /sbin/ifconfig
+	usermod -a -G video www-data
 	
 ### Drink coffee
 

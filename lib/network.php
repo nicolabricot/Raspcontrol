@@ -17,7 +17,7 @@ class Network {
 
   public static function ethernet() {
 
-  $data = exec("sudo ifconfig eth0 | grep RX\ bytes", $out);
+  $data = shell_exec("/sbin/ifconfig eth0 | grep RX\ bytes");
   $data = str_ireplace("RX bytes:", "", $data);
   $data = str_ireplace("TX bytes:", "", $data);
   $data = trim($data);
