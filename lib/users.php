@@ -10,6 +10,9 @@ class Users {
 
     $dataRaw = shell_exec("who --ips");
     $dataRawDNS = shell_exec("who --lookup");
+    
+    //patch for arch linux - the "who" binary doesnt support the --ips flag
+    if (empty($dataRaw)) $dataRaw = shell_exec("who");
 
     foreach (explode ("\n", $dataRawDNS) as $line) {
       $line = preg_replace("/ +/", " ", $line);
