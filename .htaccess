@@ -10,4 +10,5 @@ Options -Indexes
 # URL rewriting (uncomment = remove the # on the 3 following lines)
 #RewriteEngine On
 #RewriteRule ^details$ index.php?page=details
+#RewriteRule ^services$ index.php?page=services
 #RewriteRule ^logout$ login.php?logout

@@ -19,10 +19,12 @@ define('FILE_PASS', '/etc/raspcontrol/database.aptmnt');
 if ($rewriting) {
   define('LOGOUT', './logout');
   define('DETAILS', './details');
+  define('SERVICES', './services');
 }
 else {
   define('LOGOUT', './login.php?logout');
   define('DETAILS', './?page=details');
+  define('SERVICES', './?page=services');
 }
 
 ?>
