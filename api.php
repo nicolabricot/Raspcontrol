@@ -1,5 +1,33 @@
 <?php
 
+/*
+ * Json API.
+ * 
+ * <raspcontrolURL>/api.php?username=<user>&password=<password>&data=<data>
+ * 
+ * - raspcontrolURL :
+ *      The url of raspcontrol, typically "http://<ip>/raspcontrol".
+ * 
+ * - user :
+ *      The user name used to log in raspcontrol.
+ * 
+ * - password :
+ *      The password used to log in raspcontrol.
+ * 
+ * - data :
+ *      The requested datas, the possibles values are : 
+ *         all        Return all the informations (details & services).
+ *         details    Return rbpi, uptime, memory, cpu, hdd, net, users informations (informations of the details page in raspcontrol).
+ *         rbpi       Return the rbpi informations (hostname, distribution, kernel, firmware, internal & external ip).
+ *         uptime     Return the uptime (D days H hours M minutes S seconds ).
+ *         memory     Return the memory informations (ram, swap).
+ *         cpu        Return the cpu informations (usage, heat).
+ *         hdd        Return the hdd informations (array of disks).
+ *         net        Return the net informations (number of connections, up & down).
+ *         users      Return the array of ssh active users.
+ *         services   Return the services with their status.
+ */
+ 
 namespace lib;
 use lib\Uptime;
 use lib\Memory;
