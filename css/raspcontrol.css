@@ -112,6 +112,12 @@ header img {
   margin-bottom: 20px;
 }
 
+.services td.check {
+  width: 125px;
+}
+.services td.icon {
+  width: 60px;
+}
 
 /*
  *  Footer
