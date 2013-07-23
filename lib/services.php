@@ -8,12 +8,12 @@ class Services{
     
     $result = array();
     
-    exec('service --status-all', $servicesArray);
+    exec('/usr/sbin/service --status-all', $servicesArray);
     
     for ($i = 0; $i < count($servicesArray); $i++) {
       $servicesArray[$i] = preg_replace('!\s+!', ' ', $servicesArray[$i]);
       preg_match_all('/\S+/', $servicesArray[$i], $serviceDetails);
-      list($status, $name) = $serviceDetails[0];
+      list($bracket1, $status, $bracket2, $name) = $serviceDetails[0];
       
       $result[$i]['name'] = $name;
       $result[$i]['status'] = $status;
@@ -28,7 +28,7 @@ class Services{
     $result = array();
     
     for($i = 0; $i < count($services); $i++){
-      if($services[$i]['status'] == '[+]'){
+      if($services[$i]['status'] == '+'){
         array_push($result, $services[$i]);
       }
     }
