@@ -27,14 +27,20 @@ try {
     if(!empty($_GET['data'])){
       switch($_GET['data']){
         case 'all':
+          $result['rbpi']['hostname'] = Rbpi::hostname(true);
+          $result['rbpi']['distribution'] = Rbpi::distribution();
+          $result['rbpi']['kernel'] = Rbpi::kernel();
+          $result['rbpi']['firmware'] = Rbpi::firmware();
+          $result['rbpi']['ip']['internal'] = Rbpi::internalIp();
+          $result['rbpi']['ip']['external'] = Rbpi::externalIp();
           $result['uptime'] = Uptime::uptime();
-          $result['ram'] = Memory::ram();
-          $result['swap'] = Memory::swap();
-          $result['cpu'] = CPU::cpu();
-          $result['cpu_heat'] = CPU::heat();
+          $result['memory']['ram'] = Memory::ram();
+          $result['memory']['swap'] = Memory::swap();
+          $result['cpu']['usage'] = CPU::cpu();
+          $result['cpu']['heat'] = CPU::heat();
           $result['hdd'] = Storage::hdd();
-          $result['net_connections'] = Network::connections();
-          $result['net_eth'] = Network::ethernet();
+          $result['net']['connections'] = Network::connections();
+          $result['net']['ethernet'] = Network::ethernet();
           $result['users'] = Users::connected();;
           $result['services'] = Services::services();
         break;
