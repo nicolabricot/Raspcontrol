@@ -7,7 +7,6 @@ use lib\CPU;
 use lib\Storage;
 use lib\Network;
 use lib\Rbpi;
-use lib\Services;
 use lib\Users;
 
 $uptime = Uptime::uptime();
@@ -22,7 +21,6 @@ for ($i=0; $i<sizeof($hdd); $i++) {
     $hdd_alert = 'warning';
 }
 $network = Network::connections();
-$servicesRunning = Services::servicesRunning();
 $users = sizeof(Users::connected());
 
 $external_ip = Rbpi::externalIp();
@@ -88,9 +86,6 @@ function icon_alert($alert) {
             </div>
             <div>
               <i class="icon-user"></i> Users <a href="<?php echo DETAILS; ?>#check-users"><span class="badge pull-right"><?php echo $users; ?></span></a>
-            </div>
-            <div>
-              <i class="icon-cog"></i> Services <a href="<?php echo SERVICES; ?>#check-services"><span class="badge pull-right"><?php echo sizeof($servicesRunning); ?></span></a>
             </div>
           </div>
         </div>
