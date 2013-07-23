@@ -21,6 +21,20 @@ class Services{
     
     return $result;
 	}
+  
+  public static function servicesRunning() {
+    $services = self::services();
+    
+    $result = array();
+    
+    for($i = 0; $i < count($services); $i++){
+      if($services[$i]['status'] == '[+]'){
+        array_push($result, $services[$i]);
+      }
+    }
+  
+    return $result;
+  }
 }
 
 ?>
