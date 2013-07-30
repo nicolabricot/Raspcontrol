@@ -45,19 +45,20 @@ class Rbpi {
     if(!function_exists('curl_init'))
       return FALSE;
     $curl = curl_init();
-    curl_setopt($curl, CURLOPT_URL, 'http://ifconfig.me');
-    curl_setopt($curl, CURLOPT_HEADER, 1);
-    $ip = curl_exec($curl);
+    curl_setopt($curl, CURLOPT_URL, 'http://ifconfig.me/all.json');
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+      $ip_json = curl_exec($curl);
     curl_close($curl);
-    if($ip=='')
+    if($ip_json=='')
       return FALSE;
-    return $ip;
+    $ip_arr = json_decode($ip_json,true);
+    return $ip_arr['ip_addr'];
   }
 
   public static function externalIp() {
-    $ip = self::externalIpByCurl();
+    $ip = self::externalIpByJson();
     if($ip==FALSE)
-      $ip = self::externalIpByJson();
+      $ip = self::externalIpByCurl();
     if($ip==FALSE)
       return 'Unavailable';
     return $ip;
