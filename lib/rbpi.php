@@ -30,9 +30,9 @@ class Rbpi {
 
   public static function externalIp() {
       $ip = self::loadUrl('http://whatismyip.akamai.com');
-      if(filter_var($ip, FILTER_VALIDATE_IP) === FALSE)
+      if(filter_var($ip, FILTER_VALIDATE_IP) === false)
           $ip = self::loadUrl('http://ipecho.net/plain');
-      if(filter_var($ip, FILTER_VALIDATE_IP) === FALSE)
+      if(filter_var($ip, FILTER_VALIDATE_IP) === false)
           return 'Unavailable';
       return $ip;
   }
