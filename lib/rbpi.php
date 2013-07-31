@@ -28,44 +28,32 @@ class Rbpi {
     return $_SERVER['SERVER_ADDR'];
   }
 
-  public static function externalIpByJson() {
-    if (!function_exists('file_get_contents'))
-      return FALSE;
-    $ip_json = file_get_contents('http://pv.sohu.com/cityjson?ie=utf-8');
-    if ($ip_json==FALSE)
-      return FALSE;
-    $ip_json = trim($ip_json);
-    $ip_json = substr($ip_json, 19);
-    $ip_json = substr($ip_json, 0, -1);
-    $ip_arr = json_decode($ip_json,true);
-    return $ip_arr['cip'];
-  }
-
-  public static function externalIpByCurl() {
-    if(!function_exists('curl_init'))
-      return FALSE;
-    $curl = curl_init();
-    curl_setopt($curl, CURLOPT_URL, 'http://ifconfig.me/all.json');
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-      $ip_json = curl_exec($curl);
-    curl_close($curl);
-    if($ip_json=='')
-      return FALSE;
-    $ip_arr = json_decode($ip_json,true);
-    return $ip_arr['ip_addr'];
-  }
-
   public static function externalIp() {
-    $ip = self::externalIpByJson();
-    if($ip==FALSE)
-      $ip = self::externalIpByCurl();
-    if($ip==FALSE)
-      return 'Unavailable';
-    return $ip;
-}
+      $ip = self::loadUrl('http://whatismyip.akamai.com');
+      if(filter_var($ip, FILTER_VALIDATE_IP) === FALSE)
+          $ip = self::loadUrl('http://ipecho.net/plain');
+      if(filter_var($ip, FILTER_VALIDATE_IP) === FALSE)
+          return 'Unavailable';
+      return $ip;
+  }
 
   public static function webServer() {
     return$_SERVER['SERVER_SOFTWARE'];
+  }
+  
+  protected static function loadUrl($url){
+      if(function_exists('curl_init')){
+          $curl = curl_init();
+          curl_setopt($curl, CURLOPT_URL, $url);
+          curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+          $content = curl_exec($curl);
+          curl_close($curl);
+          return trim($content);
+      }elseif(function_exists('file_get_contents')){
+          return trim(file_get_contents($url));
+      }else{
+          return false;
+      }
   }
 
 }
