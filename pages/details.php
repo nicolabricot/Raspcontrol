@@ -8,6 +8,7 @@ use lib\Storage;
 use lib\Network;
 use lib\Rbpi;
 use lib\Users;
+use lib\Temp;
 
 $uptime = Uptime::uptime();
 $ram = Memory::ram();
@@ -18,6 +19,7 @@ $hdd = Storage::hdd();
 $net_connections = Network::connections();
 $net_eth = Network::ethernet();
 $users = Users::connected();
+$temp = Temp::temp();
 
 function icon_alert($alert) {
   echo '<i class="icon-';
@@ -175,6 +177,14 @@ function shell_to_html_table_result($shellExecOutput) {
                     echo '<li>no user logged in</li>';
                 ?>
               </ul>
+            </td>
+          </tr>
+
+          <tr id="check-temp">
+            <td class="check"><i class="icon-fire"></i> Temperature</td>
+            <td class="icon"><?php echo icon_alert($temp['alert']); ?></td>
+            <td class="infos">
+              <span class="text-info"><?php echo $temp['degrees']; ?>°C</span>
             </td>
           </tr>
 

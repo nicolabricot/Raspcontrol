@@ -25,6 +25,7 @@
  *         hdd        Return the hdd informations (array of disks).
  *         net        Return the net informations (number of connections, up & down).
  *         users      Return the array of ssh active users.
+ *         temp       Return the current temperature
  *         services   Return the services with their status.
  */
  
@@ -37,6 +38,7 @@ use lib\Network;
 use lib\Rbpi;
 use lib\Services;
 use lib\Users;
+use lib\Temp;
 
 spl_autoload_extensions('.php');
 spl_autoload_register();
@@ -79,6 +81,10 @@ function build_users($response){
   $response['users'] = Users::connected();
   return $response;
 }
+function build_temp($response){
+  $response['temp'] = Temp::temp();
+  return $response;
+}
 function build_services($response){
   $response['services'] = Services::services();
   return $response;
@@ -103,6 +109,7 @@ try {
           $result = build_hdd($result);
           $result = build_net($result);
           $result = build_users($result);
+          $result = build_temp($result);
           $result = build_services($result);
         break;
         case 'rbpi':
@@ -126,6 +133,9 @@ try {
         case 'users':
           $result = build_users($result);
         break;
+        case 'temp':
+          $result = build_temp($result);
+        break;
         case 'services':
           $result = build_services($result);
         break;
@@ -137,6 +147,7 @@ try {
           $result = build_hdd($result);
           $result = build_net($result);
           $result = build_users($result);
+          $result = build_temp($result);
         break;
         default:
           $result['error'] = 'Incorrect data request.'; 
