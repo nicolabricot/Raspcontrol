@@ -184,7 +184,7 @@ function shell_to_html_table_result($shellExecOutput) {
             <td class="check"><i class="icon-fire"></i> Temperature</td>
             <td class="icon"><?php echo icon_alert($temp['alert']); ?></td>
             <td class="infos">
-              <span class="text-info"><?php echo $temp['degrees']; ?>°C</span>
+              <span class="text-info"><?php echo $temp['degrees']; ?></span>
             </td>
           </tr>
 
