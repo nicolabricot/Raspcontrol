@@ -31,7 +31,7 @@ else if (isset($_POST['username']) && isset($_POST['password']) && !empty($_POST
         fclose($handler);
       }
       else{
-        $_SESSION['message'] = "Database file \"", FILE_PASS, "\" is not writable, please check the file owner and rights.";
+        $_SESSION['message'] = "Database file \"".FILE_PASS."\" is not writable, please check the file owner and rights.";
       }
     }
     
