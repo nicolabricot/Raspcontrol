@@ -7,6 +7,7 @@ set_error_handler(function() {
 });
 
 require 'config.php';
+require 'lib/password.php';
 
 // logout
 if (isset($_GET['logout'])) {
