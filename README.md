@@ -17,7 +17,7 @@ If you are in a hurry, just clone the repository with:
 
 	git clone https://github.com/Bioshox/Raspcontrol.git raspcontrol
 
-And create the json authentifation file `/etc/raspcontrol/database.aptmnt` with 777 rights:
+And create the json authentifation file `/etc/raspcontrol/database.aptmnt` with 740 rights and owned by www-data:
 
 	{
  	   "user":       "yourName",
