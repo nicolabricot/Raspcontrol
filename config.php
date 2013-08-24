@@ -20,11 +20,13 @@ if ($rewriting) {
   define('LOGOUT', './logout');
   define('DETAILS', './details');
   define('SERVICES', './services');
+  define('DISKS', './disks');
 }
 else {
   define('LOGOUT', './login.php?logout');
   define('DETAILS', './?page=details');
   define('SERVICES', './?page=services');
+  define('DISKS', './?page=disks');
 }
 
 ?>
