@@ -8,7 +8,6 @@ use lib\Storage;
 use lib\Network;
 use lib\Rbpi;
 use lib\Users;
-use lib\Temp;
 
 $uptime = Uptime::uptime();
 $ram = Memory::ram();
