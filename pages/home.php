@@ -22,7 +22,6 @@ for ($i=0; $i<sizeof($hdd); $i++) {
 }
 $network = Network::connections();
 $users = sizeof(Users::connected());
-$temp = Temp::temp();
 
 $external_ip = Rbpi::externalIp();
 

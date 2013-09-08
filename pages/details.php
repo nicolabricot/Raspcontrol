@@ -18,7 +18,6 @@ $hdd = Storage::hdd();
 $net_connections = Network::connections();
 $net_eth = Network::ethernet();
 $users = Users::connected();
-$temp = Temp::temp();
 
 function icon_alert($alert) {
   echo '<i class="icon-';
