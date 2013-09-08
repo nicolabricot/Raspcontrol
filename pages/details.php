@@ -123,7 +123,7 @@ function shell_to_html_table_result($shellExecOutput) {
           </tr>
 
           <tr id="check-cpu-heat">
-            <td class="check"><i class="icon-fire"></i> CPU</td>
+            <td class="check"><i class="icon-fire"></i> CPU heat</td>
             <td class="icon"><?php echo icon_alert($cpu_heat['alert']); ?></td>
             <td class="infos">
 			<div class="progress" id="popover-cpu">
@@ -180,9 +180,7 @@ function shell_to_html_table_result($shellExecOutput) {
             </td>
           </tr>
            
-          <?php
-          if($temp['degrees'] != "N/A"){
-          ?>
+          <?php if($temp['degrees'] != "N/A"): ?>
           <tr id="check-temp">
             <td class="check"><i class="icon-fire"></i> DS18B20</td>
             <td class="icon"><?php echo icon_alert($temp['alert']); ?></td>
@@ -190,9 +188,7 @@ function shell_to_html_table_result($shellExecOutput) {
               <span class="text-info"><?php echo $temp['degrees']; ?></span>
             </td>
           </tr>
-          <?php
-          }
-          ?>
+          <?php endif; ?>
 
         </table>
       </div>

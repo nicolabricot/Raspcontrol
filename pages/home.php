@@ -76,7 +76,7 @@ function icon_alert($alert) {
               <i class="icon-tasks"></i> CPU <a href="<?php echo DETAILS; ?>#check-cpu"><?php echo icon_alert($cpu['alert']); ?></a>
             </div>
             <div>
-              <i class="icon-fire"></i> CPU <a href="<?php echo DETAILS; ?>#check-cpu-heat"><?php echo icon_alert($cpu_heat['alert']); ?></a>
+              <i class="icon-fire"></i> CPU heat<a href="<?php echo DETAILS; ?>#check-cpu-heat"><?php echo icon_alert($cpu_heat['alert']); ?></a>
             </div>
           </div>
           <div class="span4 offset4 rapid-status">
@@ -89,9 +89,11 @@ function icon_alert($alert) {
             <div>
               <i class="icon-user"></i> Users <a href="<?php echo DETAILS; ?>#check-users"><span class="badge pull-right"><?php echo $users; ?></span></a>
             </div>
+            <?php if($temp['degrees'] != "N/A"): ?>
             <div>
               <i class="icon-fire"></i> Temperature <a href="<?php echo DETAILS; ?>#check-temp"><?php echo icon_alert($temp['alert']); ?></a>
             </div>
+            <?php endif; ?>
             </div>
           </div>
         </div>
