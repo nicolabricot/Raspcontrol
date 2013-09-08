@@ -11,4 +11,5 @@ Options -Indexes
 #RewriteEngine On
 #RewriteRule ^details$ index.php?page=details
 #RewriteRule ^services$ index.php?page=services
+#RewriteRule ^disks$ index.php?page=disks
 #RewriteRule ^logout$ login.php?logout

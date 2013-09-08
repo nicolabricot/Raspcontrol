@@ -36,7 +36,7 @@ function label_partition($status) {
 		  if ($disks[$i]["type"] != "disk")
 		  {		
 			 echo '<td class="icon" style="padding-left: 10px;">' , label_partition($disks[$i]['mountpoint']), '</td>';
-		     echo '<td class="infos">', $disks[$i]['name'] . "<br>Size: " .  $disks[$i]['size'] . "<br />Mountpoint: " . $disks[$i]['mountpoint'] , '</td>';
+		     echo '<td class="infos">', $disks[$i]['name'] . "<br />Size: " .  $disks[$i]['size'] . "<br />Mountpoint: " . $disks[$i]['mountpoint'] , '</td>';
 		  }
 		  else echo '<td class="icon">', $disks[$i]['name'] , '</td>';
        
