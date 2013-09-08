@@ -30,13 +30,13 @@ function label_partition($status) {
 <div class="container details">
   <table>
     <tr class="disks" id="check-disks">
-      <td class="check" rowspan="<?php echo sizeof($disks); ?>"><i class="icon-cog"></i> Disks</td>
+      <td class="check" rowspan="<?php echo sizeof($disks); ?>"><i class="icon-hdd"></i> Disks</td>
       <?php	 
         for ($i = 0; $i < sizeof($disks); $i++) {
 		  if ($disks[$i]["type"] != "disk")
 		  {		
 			 echo '<td class="icon" style="padding-left: 10px;">' , label_partition($disks[$i]['mountpoint']), '</td>';
-		     echo '<td class="infos">', $disks[$i]['name'] . "<br>Size: " .  $disks[$i]['size'] . "<br>Mountpoint: " . $disks[$i]['mountpoint'] , '</td>';
+		     echo '<td class="infos">', $disks[$i]['name'] . "<br>Size: " .  $disks[$i]['size'] . "<br />Mountpoint: " . $disks[$i]['mountpoint'] , '</td>';
 		  }
 		  else echo '<td class="icon">', $disks[$i]['name'] , '</td>';
        
