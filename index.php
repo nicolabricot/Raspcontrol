@@ -1,6 +1,7 @@
 <?php
 
 namespace lib;
+use lib\Secret;
 
 spl_autoload_extensions('.php');
 spl_autoload_register();
@@ -22,7 +23,12 @@ if (isset($_SESSION['authentificated']) && $_SESSION['authentificated']) {
   }
 }
 else {
-  $_GET['page'] = 'login';
+
+  if (!file_exists(Secret::SECRET_FILE)) {
+    $_GET['page'] = 'welcome';
+  } else {
+    $_GET['page'] = 'login';
+  }
   $display = false;
 }
 
@@ -73,6 +79,7 @@ $page = file_exists($page) ? $page : 'pages'. DIRECTORY_SEPARATOR .'404.php';
 				<li<?php is_active('disks'); ?>><a href="<?php echo DISKS; ?>"><i class="icon-hdd icon-white"></i> Disks</a></li>
 			  </ul>
 			  <ul class="nav pull-right">
+        <li><a href="<?php echo ME; ?>"><i class="icon-user icon-white"></i></a></li>  
 				<li><a href="<?php echo LOGOUT; ?>"><i class="icon-off icon-white"></i> Logout</a></li>
 			  </ul>
           </div>
@@ -99,8 +106,8 @@ $page = file_exists($page) ? $page : 'pages'. DIRECTORY_SEPARATOR .'404.php';
 
     <footer>
       <div class="container">
-        <p>Powered by <a href="https://github.com/Bioshox/Raspcontrol">Raspcontrol</a>.</p>
-        <p>Sources are available on <a href="https://github.com/Bioshox/Raspcontrol">Github</a>.</p>
+        <p>Powered by <a href="https://github.com/Bioshox/Raspcontrol">Raspcontrol</a> and adapted by <a href="https://twitter.com/nicolabricot">@nicolabricot</a>.</p>
+        <p>Sources are available on <a href="https://github.com/nicolabricot/Raspcontrol">Github</a>.</p>
       </div>
     </footer>
 

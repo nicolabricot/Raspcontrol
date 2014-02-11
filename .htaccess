@@ -6,10 +6,15 @@
 
 # Security rules
 Options -Indexes
+# unicorn file is already crypted and commented so nothing will be outputed
+<Files unicorn.php>
+	deny from all
+</Files>
 
 # URL rewriting (uncomment = remove the # on the 3 following lines)
 #RewriteEngine On
 #RewriteRule ^details$ index.php?page=details
 #RewriteRule ^services$ index.php?page=services
 #RewriteRule ^disks$ index.php?page=disks
+#RewriteRule ^me$ index.php?page=me
 #RewriteRule ^logout$ login.php?logout
