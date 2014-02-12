@@ -25,7 +25,6 @@
  *         hdd        Return the hdd informations (array of disks).
  *         net        Return the net informations (number of connections, up & down).
  *         users      Return the array of ssh active users.
- *         temp       Return the current temperature
  *         services   Return the services with their status.
  */
  
@@ -102,7 +101,6 @@ if (!empty($_GET['username']) && !empty($_GET['token']) && $s->verifyToken($_GET
         $result = build_hdd($result);
         $result = build_net($result);
         $result = build_users($result);
-        $result = build_temp($result);
         $result = build_services($result);
       break;
       case 'rbpi':
@@ -137,7 +135,6 @@ if (!empty($_GET['username']) && !empty($_GET['token']) && $s->verifyToken($_GET
         $result = build_hdd($result);
         $result = build_net($result);
         $result = build_users($result);
-        $result = build_temp($result);
       break;
       default:
         $result['error'] = 'Incorrect data request.'; 
