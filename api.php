@@ -42,6 +42,8 @@ use lib\Users;
 spl_autoload_extensions('.php');
 spl_autoload_register();
 
+header('Content-type: application/json');
+
 require 'config.php';
 
 function build_rbpi($response){
@@ -86,7 +88,7 @@ function build_services($response){
 }
 
 $result = array();
-// we think everithing will be fine...
+// we think everything will be fine...
 $result['code'] = 200;
 
 $s = new Secret();
@@ -140,23 +142,22 @@ if (!empty($_GET['username']) && !empty($_GET['token']) && $s->verifyToken($_GET
       break;
       default:
         // method not allowed
-        $result['code'] = '405'
+        $result['code'] = 405;
         $result['error'] = 'Incorrect data request.'; 
     }
   }
   else{
     // bad request
-    $result['code'] = '400'
+    $result['code'] = 400;
     $result['error'] = 'Empty data request.'; 
   }
 }
 else{
   // unauthorized
-  $result['code'] = '401'
+  $result['code'] = 401;
   $result['error'] = 'Incorrect username or API token.'; 
 }
 
-header('Content-type: application/json');
 exit(json_encode($result));
 
 ?>
