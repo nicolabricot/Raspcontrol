@@ -86,6 +86,8 @@ function build_services($response){
 }
 
 $result = array();
+// we think everithing will be fine...
+$result['code'] = 200;
 
 $s = new Secret();
   
@@ -137,19 +139,24 @@ if (!empty($_GET['username']) && !empty($_GET['token']) && $s->verifyToken($_GET
         $result = build_users($result);
       break;
       default:
+        // method not allowed
+        $result['code'] = '405'
         $result['error'] = 'Incorrect data request.'; 
     }
   }
   else{
+    // bad request
+    $result['code'] = '400'
     $result['error'] = 'Empty data request.'; 
   }
 }
 else{
-  //Login error, api error response
+  // unauthorized
+  $result['code'] = '401'
   $result['error'] = 'Incorrect username or API token.'; 
 }
 
 header('Content-type: application/json');
-echo json_encode($result);
+exit(json_encode($result));
 
 ?>
