@@ -1,13 +1,14 @@
 <?php
 
+namespace lib;
+use lib\Secret;
+
+spl_autoload_extensions('.php');
+spl_autoload_register();
+
 session_start();
 
-set_error_handler(function() {
-  throw new Exception('Failed to open authentification file in <code>'. FILE_PASS .'</code>');
-});
-
 require 'config.php';
-require 'lib/password.php';
 
 // logout
 if (isset($_GET['logout'])) {
@@ -15,34 +16,42 @@ if (isset($_GET['logout'])) {
   session_destroy();
 }
 
+// user want to regenerate his API token
+else if (isset($_SESSION['authentificated']) && $_SESSION['authentificated'] && isset($_GET['regenerate_token'])) {
+  $s = new Secret();
+  $s->changeApiToken();
+  header('Location: '.ME);
+  exit();
+}
+
+// create new user & password
+else if (isset($_POST['unicorn'])) {
+
+  // check we can write in the directory
+  if (!is_writable(realpath(dirname(__FILE__)))) die('<p style="text-align:center;"><span style="color:red;">ERROR</span><br />Application does not have the right to write in its own directory <code>'.realpath(dirname(__FILE__)).'</code>.</p>');
+
+  if (isset($_POST['username']) && isset($_POST['password']) && !empty($_POST['username']) && !empty($_POST['password'])) {
+    $s = new Secret();
+    $s->setData($_POST['username'], $_POST['password']);
+  }
+  else {
+    $_SESSION['message'] = 'Username and password must not be empty!';
+  }
+
+}
+
 // check identification
 else if (isset($_POST['username']) && isset($_POST['password']) && !empty($_POST['username']) && !empty($_POST['password'])) {
-  try {
-    //*
-    $db = json_decode(file_get_contents(FILE_PASS));
-    $username = $db->{'user'};
-    $password = $db->{'password'};
-    
-    if(password_needs_rehash($password, PASSWORD_BCRYPT)){
-      $password = password_hash($password, PASSWORD_BCRYPT);
-      $db->{'password'} = $password;
-      if(is_writable(FILE_PASS)){
-        $handler = fopen(FILE_PASS, 'w');
-        fwrite($handler, json_encode($db));
-        fclose($handler);
-      }
-      else{
-        $_SESSION['message'] = "Database file \"".FILE_PASS."\" is not writable, please check the file owner and rights.";
-      }
-    }
-    
-    if ($_POST['username'] == $username && password_verify($_POST['password'],$password))
-      $_SESSION['authentificated'] = true;
-    else
-      $_SESSION['message'] = 'Incorrect username or password.';  
-  } catch(Exception $e) {
-    $_SESSION['message'] = $e->getMessage();
+
+  $s = new Secret();
+
+  if ($s->verify($_POST['username'], $_POST['password'])) {
+    $_SESSION['authentificated'] = true;
   }
+  else {
+    $_SESSION['message'] = 'Incorrect username or password.';
+  }
+
 }
 
 header('Location: '.INDEX);

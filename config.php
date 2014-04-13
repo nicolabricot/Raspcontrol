@@ -14,19 +14,20 @@ $rewriting = false;
 error_reporting(0);
 define('INDEX', './');
 define('LOGIN', 'login.php');
-define('FILE_PASS', '/etc/raspcontrol/database.aptmnt');
 
 if ($rewriting) {
   define('LOGOUT', './logout');
   define('DETAILS', './details');
   define('SERVICES', './services');
   define('DISKS', './disks');
+  define('ME', './me');
 }
 else {
   define('LOGOUT', './login.php?logout');
   define('DETAILS', './?page=details');
   define('SERVICES', './?page=services');
   define('DISKS', './?page=disks');
+  define('ME', './?page=me');
 }
 
 ?>

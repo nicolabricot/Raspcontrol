@@ -8,7 +8,6 @@ use lib\Storage;
 use lib\Network;
 use lib\Rbpi;
 use lib\Users;
-use lib\Temp;
 
 $uptime = Uptime::uptime();
 $ram = Memory::ram();
@@ -23,7 +22,6 @@ for ($i=0; $i<sizeof($hdd); $i++) {
 }
 $network = Network::connections();
 $users = sizeof(Users::connected());
-$temp = Temp::temp();
 
 $external_ip = Rbpi::externalIp();
 
@@ -89,11 +87,6 @@ function icon_alert($alert) {
             <div>
               <i class="icon-user"></i> Users <a href="<?php echo DETAILS; ?>#check-users"><span class="badge pull-right"><?php echo $users; ?></span></a>
             </div>
-            <?php if($temp['degrees'] != "N/A"): ?>
-            <div>
-              <i class="icon-fire"></i> Temperature <a href="<?php echo DETAILS; ?>#check-temp"><?php echo icon_alert($temp['alert']); ?></a>
-            </div>
-            <?php endif; ?>
             </div>
           </div>
         </div>
