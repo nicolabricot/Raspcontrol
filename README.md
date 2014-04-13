@@ -13,7 +13,7 @@ _For the moment, you need a web server (like Apache) installed on your Raspberry
 
 Just clone the repository with:
 
-	git clone -b android https://github.com/nicolabricot/Raspcontrol.git raspcontrol
+	git clone -b master https://github.com/nicolabricot/Raspcontrol.git raspcontrol
 
 That's all! You're ready to show the status of your Raspberry Pi :)
 
