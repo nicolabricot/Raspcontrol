@@ -1,7 +1,9 @@
       <div class="container">
         <div class="alert alert-info">
-            It seems to be the first time you access Raspcontrol.
-            <br />Please create your ID to go on!
+            <b>It seems to be the first time you access Raspcontrol.</b>
+            <br><br>
+            Please create your ID to go on!
+            <br>Leave blank the password if you want to authorize anonymous access.
         </div>
     </div>
 

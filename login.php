@@ -30,9 +30,13 @@ else if (isset($_POST['unicorn'])) {
   // check we can write in the directory
   if (!is_writable(realpath(dirname(__FILE__)))) die('<p style="text-align:center;"><span style="color:red;">ERROR</span><br />Application does not have the right to write in its own directory <code>'.realpath(dirname(__FILE__)).'</code>.</p>');
 
-  if (isset($_POST['username']) && isset($_POST['password']) && !empty($_POST['username']) && !empty($_POST['password'])) {
+  if (isset($_POST['username']) && isset($_POST['password']) && !empty($_POST['username'])) {
     $s = new Secret();
     $s->setData($_POST['username'], $_POST['password']);
+    // anonymous access
+    if (empty($_POST['password'])) {
+      touch('anonymous');
+    }
   }
   else {
     $_SESSION['message'] = 'Username and password must not be empty!';
