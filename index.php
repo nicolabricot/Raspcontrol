@@ -108,7 +108,7 @@ $page = file_exists($page) ? $page : 'pages'. DIRECTORY_SEPARATOR .'404.php';
 
     <footer>
       <div class="container">
-        <p>Powered by <a href="https://github.com/Bioshox/Raspcontrol">Raspcontrol</a> and adapted by <a href="https://twitter.com/nicolabricot">@nicolabricot</a>.</p>
+        <p>Version 1.2.0 &ndash; Raspcontrol adapted by <a href="https://twitter.com/nicolabricot">@nicolabricot</a>.</p>
         <p>Sources are available on <a href="https://github.com/nicolabricot/Raspcontrol">Github</a>.</p>
       </div>
     </footer>
