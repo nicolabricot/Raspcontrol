@@ -146,12 +146,15 @@ footer {
 
 footer p {
   margin: 0;
-}
-footer a {
+  font-size: 12px;
+  line-height: 18px;
   color: #ccc;
 }
+footer a {
+  color: #888;
+}
 footer a:hover {
-  color: #fff;
+  color: #eee;
 }
 
 /*

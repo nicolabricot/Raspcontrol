@@ -11,7 +11,7 @@ session_start();
 require 'config.php';
 
 // authentification
-if (isset($_SESSION['authentificated']) && $_SESSION['authentificated']) {
+if ((isset($_SESSION['authentificated']) && $_SESSION['authentificated']) || is_file('anonymous')) {
   if (empty($_GET['page'])) $_GET['page'] = 'home';
   $_GET['page'] = htmlspecialchars($_GET['page']);
   $_GET['page'] = str_replace("\0", '', $_GET['page']);
@@ -79,8 +79,10 @@ $page = file_exists($page) ? $page : 'pages'. DIRECTORY_SEPARATOR .'404.php';
 				<li<?php is_active('disks'); ?>><a href="<?php echo DISKS; ?>"><i class="icon-hdd icon-white"></i> Disks</a></li>
 			  </ul>
 			  <ul class="nav pull-right">
-        <li><a href="<?php echo ME; ?>"><i class="icon-user icon-white"></i></a></li>  
+        <li><a href="<?php echo ME; ?>" title="Account"><i class="icon-user icon-white"></i></a></li>
+        <?php if (!is_file('anonymous')): ?>
 				<li><a href="<?php echo LOGOUT; ?>"><i class="icon-off icon-white"></i> Logout</a></li>
+        <?php endif; ?>
 			  </ul>
           </div>
         </div>
@@ -106,7 +108,7 @@ $page = file_exists($page) ? $page : 'pages'. DIRECTORY_SEPARATOR .'404.php';
 
     <footer>
       <div class="container">
-        <p>Powered by <a href="https://github.com/Bioshox/Raspcontrol">Raspcontrol</a> and adapted by <a href="https://twitter.com/nicolabricot">@nicolabricot</a>.</p>
+        <p>Version 1.2.0 &ndash; Raspcontrol adapted by <a href="https://twitter.com/nicolabricot">@nicolabricot</a>.</p>
         <p>Sources are available on <a href="https://github.com/nicolabricot/Raspcontrol">Github</a>.</p>
       </div>
     </footer>
